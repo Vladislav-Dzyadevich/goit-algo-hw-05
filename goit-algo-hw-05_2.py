@@ -14,8 +14,15 @@ def binary_search(arr, target):
         else:
             right = mid - 1
 
-    # Якщо значення не знайдено, повертаємо None
-    return (iterations, arr[right])
+    # Після завершення циклу визначаємо верхню межу
+    if right < 0:
+        return (iterations, None)  # Якщо right < 0, значить масив порожній
+    elif left >= len(arr):
+        return (iterations, arr[right])  # Якщо left >= len(arr), значить target більший за всі елементи
+    else:
+        # В іншому випадку, верхня межа - елемент, що стоїть правіше від mid,
+        # або максимальне значення з масиву, якщо target більше за всі елементи
+        return (iterations, arr[left] if target > arr[right] else arr[right])
 
 # Приклад використання:
 arr = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
